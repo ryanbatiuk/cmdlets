@@ -1,0 +1,1 @@
+Get-Mailbox -filter {customattribute1 -eq "cid6148"} -ResultSize Unlimited |Select-Object DisplayName,PrimarySmtpAddress, @{Name="EmailAddresses";Expression={$_.EmailAddresses |Where-Object {$_.PrefixString -ceq "smtp"} | ForEach-Object {$_.SmtpAddress}}} | Sort-Object displayname | export-Csv c:\temp\addresses.csv -notypeinformation
