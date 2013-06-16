@@ -1,0 +1,1 @@
+Get-MailboxStatistics -server pit-exmbx-01 | Where-Object {$_.databasename -like "*10335*"} | Select-Object displayname,itemcount,@{label=”Total Size (MB)”;expression={$_.TotalItemSize.Value.ToMB()}} | Sort-Object displayname | export-Csv c:\temp\mailboxsize.csv -notypeinformation
